@@ -1,6 +1,7 @@
 import { getAllInventory } from "../../api/InventoryAPI";
 import { useEffect, useState } from "react";
 import InventoryItem from "./InventoryItem";
+import "./style.css"
 
 export default function InventoryList() {
     const [inventories, setInventories] = useState([]);
@@ -12,7 +13,7 @@ export default function InventoryList() {
     }, []);
 
     return (
-        <div>
+        <div className={'inventories'}>
             {inventories.length > 0 ? (
                 inventories.map((inventory, index) => (
                     <div className={'inventoryMap'} key={index}>

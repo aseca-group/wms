@@ -1,5 +1,6 @@
 import {getProductById} from "../../api/ProductAPI";
 import {useEffect, useState} from "react";
+import "./style.css"
 
 export default function InventoryItem({productId, stock, reservedStock}) {
     const [product, setProduct] = useState(null);
@@ -9,11 +10,13 @@ export default function InventoryItem({productId, stock, reservedStock}) {
             .catch(error => console.error('Error fetching product', error));
     }, [productId]);
     return (
-        <div>
-            <div>
-                Id: {productId}
+        <div className={'inventoryContainer'}>
+            <div className={'idContainer'}>
+                <p>Id</p>
+                <p>{productId}</p>
+
             </div>
-            <div>
+            <div className={'dataContainer'}>
                 <p>
                     Product: {product ? product.name : 'Loading...'}
                 </p>
