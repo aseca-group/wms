@@ -1,4 +1,4 @@
-import {getProductById} from "../../api/ProductAPI";
+import {getProductById} from "../../../api/ProductAPI";
 import {useEffect, useState} from "react";
 import "./style.css"
 import DeleteInventory from "../inventoryButtons/DeleteInventoryButton";
@@ -35,7 +35,7 @@ export default function InventoryItem({productId, stock, reservedStock}) {
             </div>
             <div className={'buttonsContainer'}>
                 <AddStock productId={productId}/>
-                <RemoveStock/>
+                <RemoveStock productId={productId}/>
                 <DeleteInventory productId={productId}/>
             </div>
         </div>

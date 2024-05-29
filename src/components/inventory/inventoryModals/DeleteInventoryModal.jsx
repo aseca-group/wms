@@ -1,7 +1,7 @@
 import './style.css'
 import {useEffect, useRef} from "react";
-import {deleteInventory} from "../../api/InventoryAPI";
-import {useOutsideClick} from "../../commons/UseOutsideClick";
+import {deleteInventory} from "../../../api/InventoryAPI";
+import {useOutsideClick} from "../../../commons/UseOutsideClick";
 
 export default function DeleteInventoryModal({isModalOpen,setModalClose, productId}) {
     const modalRef = useOutsideClick(isModalOpen, setModalClose);

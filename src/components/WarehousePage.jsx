@@ -1,6 +1,6 @@
 import PageHeader from "./header/PageHeader";
 import "./style.css";
-import InventoryList from "./inventoryList/InventoryList";
+import InventoryList from "./inventory/inventoryList/InventoryList";
 
 export default function WarehousePage(){
     return (

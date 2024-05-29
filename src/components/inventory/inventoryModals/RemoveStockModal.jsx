@@ -1,17 +1,17 @@
-import {useEffect, useRef, useState} from "react";
-import {useOutsideClick} from "../../commons/UseOutsideClick";
-import {addInventoryStock} from "../../api/InventoryAPI";
+import {useOutsideClick} from "../../../commons/UseOutsideClick";
+import {useState} from "react";
+import {removeStock} from "../../../api/InventoryAPI";
 
-export default function AddStockModal({isModalOpen,setModalClose, productId}){
+export default function RemoveStockModal({isModalOpen,setModalClose, productId}){
     const modalRef = useOutsideClick(isModalOpen, setModalClose);
     const [quantity, setQuantity] = useState(0);
 
-    const handleAddStock = async () => {
-        try {
-            await addInventoryStock(productId,quantity)
+    const handleRemoveStock = async() => {
+        try{
+            await removeStock(productId, quantity)
             setModalClose();
         } catch (error) {
-            console.error("Error adding stock", error);
+            console.error("Error removing stock", error);
         }
     }
 
@@ -20,7 +20,7 @@ export default function AddStockModal({isModalOpen,setModalClose, productId}){
             ref={modalRef}
             className={'modifyModal'}
         >
-            <p>How many items would you like to add?</p>
+            <p>How many items would you like to remove?</p>
             <input
                 type={'number'}
                 value={quantity}
@@ -35,12 +35,11 @@ export default function AddStockModal({isModalOpen,setModalClose, productId}){
                 </button>
                 <button
                     className={'stockButton'}
-                    onClick={handleAddStock}
+                    onClick={handleRemoveStock}
                 >
-                    Add
+                    Remove
                 </button>
             </div>
         </div>
     )
-
 }

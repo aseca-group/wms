@@ -8,6 +8,7 @@ export const getAllInventory = async () => {
         return response.data;
     } catch (error) {
         console.error("error fetching inventories", error);
+        throw error;
     }
 };
 
@@ -17,15 +18,20 @@ export const getInventoryById = async (id) => {
         return response.data;
     } catch (error) {
         console.error("error fetching inventory", error);
+        throw error;
     }
 };
 
-export const createInventory = async (inventory) => {
+export const createInventory = async (productId, stock) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}`, inventory);
+        const response = await axios.post(`${API_BASE_URL}`, {
+            productId: productId,
+            stock: stock
+        });
         return response.data;
     } catch (error) {
         console.error("Error creating inventory", error);
+        throw error;
     }
 };
 
@@ -38,6 +44,7 @@ export const addInventoryStock = async (productId, stockToAdd) => {
         return response.data;
     } catch (error) {
         console.error("Error adding stock", error);
+        throw error;
     }
 }
 
@@ -50,6 +57,7 @@ export const removeStock = async (productId, stockToRemove) => {
         return response.data;
     } catch (error) {
         console.error("Error removing stock", error);
+        throw error;
     }
 }
 
@@ -59,5 +67,6 @@ export const deleteInventory = async (id) => {
         return response.data;
     } catch (error) {
         console.error("Error deleting inventory", error);
+        throw error;
     }
 }
