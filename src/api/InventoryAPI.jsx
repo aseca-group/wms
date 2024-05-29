@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = "http://localhost:8080/inventory";
+const API_BASE_URL = "http://control-tower-control-tower-1:8080/inventory";
 
 export const getAllInventory = async () => {
     try {
