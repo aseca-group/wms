@@ -1,0 +1,41 @@
+.deleteModal{
+    width: 400px;
+    position: fixed;
+    right: 40%;
+    bottom: 40%;
+    z-index: 1;
+    border-radius: 10px;
+    background-color: #D1D5DB;
+    color: #1E1F20;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modifyModal{
+    width: 400px;
+    position: fixed;
+    right: 40%;
+    bottom: 40%;
+    z-index: 1;
+    border-radius: 10px;
+    background-color: #D1D5DB;
+    color: #1E1F20;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.buttonsBox{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
