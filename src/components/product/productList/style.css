@@ -1,4 +1,4 @@
-.inventories{
+.products{
     max-height: 600px;
     width: 510px;
     display: flex;
@@ -9,11 +9,11 @@
     padding: 20px;
 }
 
-.inventories::-webkit-scrollbar {
+.products::-webkit-scrollbar {
     display: none;
 }
 
-.inventoryContainer{
+.productContainer{
     height: 175px;
     width: 500px;
     display: flex;
@@ -45,13 +45,4 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-}
-
-.buttonsContainer{
-    height: 100%;
-    width: 150px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
 }
