@@ -1,0 +1,10 @@
+services:
+  wms-webapp:
+    build: .
+    ports:
+      - "3001:3001"
+    networks:
+      - control-tower_some-net
+networks:
+  control-tower_some-net:
+    external: true
