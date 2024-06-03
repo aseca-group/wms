@@ -1,8 +1,8 @@
 import {useState} from "react";
-import "./style.css"
-import CreateInventoryModal from "../createModals/CreateInventoryModal";
+import "../../product/productButtons/style.css"
+import CreateInventoryModal from "../inventoryModals/CreateInventoryModal";
 
-export default function CreateInventory(){
+export default function CreateInventory({fetchInventories}){
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const setModalOpen = () => {
@@ -21,7 +21,12 @@ export default function CreateInventory(){
                 Create Inventory
             </button>
             {
-                isModalOpen && <CreateInventoryModal isModalOpen={isModalOpen} setModalClose={setModalClose}/>
+                isModalOpen &&
+                <CreateInventoryModal
+                    isModalOpen={isModalOpen}
+                    setModalClose={setModalClose}
+                    refetchInventory={fetchInventories}
+                />
             }
         </div>
     )

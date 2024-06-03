@@ -5,7 +5,7 @@ import DeleteInventory from "../inventoryButtons/DeleteInventoryButton";
 import AddStock from "../inventoryButtons/AddStockButton";
 import RemoveStock from "../inventoryButtons/RemoveStockButton";
 
-export default function InventoryItem({productId, stock, reservedStock}) {
+export default function InventoryItem({productId, stock, reservedStock, refetchInventory}) {
     const [product, setProduct] = useState(null);
     useEffect(() => {
         getProductById(productId)
@@ -34,9 +34,9 @@ export default function InventoryItem({productId, stock, reservedStock}) {
                 </p>
             </div>
             <div className={'buttonsContainer'}>
-                <AddStock productId={productId}/>
-                <RemoveStock productId={productId}/>
-                <DeleteInventory productId={productId}/>
+                <AddStock productId={productId} refetchInventory={refetchInventory}/>
+                <RemoveStock productId={productId} refetchInventory={refetchInventory}/>
+                <DeleteInventory productId={productId} refetchInventory={refetchInventory}/>
             </div>
         </div>
     )

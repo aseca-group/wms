@@ -1,7 +1,8 @@
 import {useState} from "react";
-import CreateProductModal from "../createModals/CreateProductModal";
+import CreateProductModal from "../productModals/CreateProductModal";
+import './style.css'
 
-export default function CreateProduct(){
+export default function CreateProduct({refetchProducts}){
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const setModalOpen = () => {
@@ -20,7 +21,12 @@ export default function CreateProduct(){
                 Create Product
             </button>
             {
-                isModalOpen && <CreateProductModal isModalOpen={isModalOpen} setModalClose={setModalClose}/>
+                isModalOpen &&
+                <CreateProductModal
+                    isModalOpen={isModalOpen}
+                    setModalClose={setModalClose}
+                    refetchProduct={refetchProducts}
+                />
             }
         </div>
     )

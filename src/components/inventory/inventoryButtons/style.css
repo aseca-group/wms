@@ -19,3 +19,14 @@
     border: 0 solid white;
     cursor: pointer;
 }
+
+.createButton{
+    height: 50px;
+    width: 200px;
+    background-color: cornflowerblue;
+    font-size: 20px;
+    color: white;
+    border-radius: 10px;
+    border: 0 solid white;
+    cursor: pointer;
+}

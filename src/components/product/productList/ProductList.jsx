@@ -1,16 +1,7 @@
-import {useEffect, useState} from "react";
-import {getAllProducts} from "../../../api/ProductAPI";
 import ProductItem from "./ProductItem";
 import './style.css'
 
-export default function ProductList(){
-    const [products, setProducts] = useState([]);
-
-    useEffect(() => {
-        getAllProducts()
-            .then(data => setProducts(data))
-            .catch(error => console.error('Error fetching products', error));
-    }, []);
+export default function ProductList({products}){
 
     return (
         <div className={'products'}>

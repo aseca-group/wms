@@ -3,13 +3,14 @@ import {useEffect, useRef} from "react";
 import {deleteInventory} from "../../../api/InventoryAPI";
 import {useOutsideClick} from "../../../commons/UseOutsideClick";
 
-export default function DeleteInventoryModal({isModalOpen,setModalClose, productId}) {
+export default function DeleteInventoryModal({isModalOpen,setModalClose, productId, refetchInventory}) {
     const modalRef = useOutsideClick(isModalOpen, setModalClose);
 
     const handleDelete = async () => {
         try {
             await deleteInventory(productId);
             setModalClose();
+            await refetchInventory();
         } catch (error) {
             console.error("Error deleting inventory", error);
         }
