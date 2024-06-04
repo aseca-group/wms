@@ -34,3 +34,13 @@ export const createProduct = async (price, name) => {
         throw error;
     }
 }
+
+export const deleteProduct = async (id) => {
+    try {
+        const response = await axios.delete(`${API_BASE_URL}/${id}`);
+        return response.data;
+    } catch (error) {
+        console.error("error deleting product", error);
+        throw error;
+    }
+}

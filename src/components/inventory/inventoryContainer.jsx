@@ -6,17 +6,13 @@ import CreateInventory from "./inventoryButtons/CreateInventoryButton";
 
 export default function Inventory(){
     const [inventories, setInventories] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
 
     const fetchInventories = async () => {
-        setIsLoading(true);
         try {
             const data = await getAllInventory();
             setInventories(data);
         } catch (error) {
             console.error('Error fetching inventories', error);
-        } finally {
-            setIsLoading(false);
         }
     };
 

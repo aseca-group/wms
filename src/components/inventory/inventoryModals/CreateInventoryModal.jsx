@@ -24,12 +24,14 @@ export default function CreateInventoryModal({isModalOpen, setModalClose, refetc
         >
             <p>Enter the product id:</p>
             <input
+                name={'product id'}
                 type={'number'}
                 value={productId}
                 onChange={(e) => setProductId(e.target.value)}
             />
             <p>Enter the quantity:</p>
             <input
+                name={'quantity'}
                 type={'number'}
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}

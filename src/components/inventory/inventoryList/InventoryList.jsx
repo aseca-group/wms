@@ -1,5 +1,3 @@
-import { getAllInventory } from "../../../api/InventoryAPI";
-import { useEffect, useState } from "react";
 import InventoryItem from "./InventoryItem";
 import "./style.css"
 

@@ -26,12 +26,14 @@ export default function CreateProductModal({isModalOpen,setModalClose, refetchPr
         >
             <p>Enter the product name:</p>
             <input
+                name={'text input'}
                 type={'text'}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
             />
             <p>Enter the product price:</p>
             <input
+                name={'number input'}
                 type={'number'}
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
@@ -44,6 +46,7 @@ export default function CreateProductModal({isModalOpen,setModalClose, refetchPr
                     Cancel
                 </button>
                 <button
+                    name={'create new product button'}
                     className={'stockButton'}
                     onClick={handleCreateProduct}
                 >

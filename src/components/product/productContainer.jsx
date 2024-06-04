@@ -19,6 +19,7 @@ export default function Product(){
             .then(data => setProducts(data))
             .catch(error => console.error('Error fetching products', error));
     }, []);
+
     return (
         <div className={'container'}>
             <div className={'productHeaderContainer'}>
@@ -27,7 +28,7 @@ export default function Product(){
                 </p>
                 <CreateProduct refetchProducts={fetchProducts}/>
             </div>
-            <ProductList products={products}/>
+            <ProductList products={products} refetchProduct={fetchProducts}/>
         </div>
     )
 }

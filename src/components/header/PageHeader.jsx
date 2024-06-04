@@ -1,6 +1,4 @@
 import "./style.css"
-import CreateInventory from "../inventory/inventoryButtons/CreateInventoryButton";
-import CreateProduct from "../product/productButtons/CreateProductButton";
 
 export default function PageHeader() {
     return (
