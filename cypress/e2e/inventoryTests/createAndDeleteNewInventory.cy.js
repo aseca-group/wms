@@ -4,48 +4,69 @@ describe('template spec', () => {
 
     let productId;
 
-    /* ==== Generated with Cypress Studio ==== */
+    // Crear un nuevo producto
     cy.get('.productHeaderContainer > div > .createButton').click();
-    cy.get('[name="text input"]').clear();
-    cy.get('[name="text input"]').type('cypress test');
-    cy.get('[name="number input"]').clear('1');
-    cy.get('[name="number input"]').type('1000');
+    cy.get('[name="text input"]').clear().type('cypress test');
+    cy.get('[name="number input"]').clear().type('1000');
     cy.get('[name="create new product button"]').click();
-    cy.get(':nth-child(9) > .productContainer > .dataContainer > :nth-child(1)').should('have.text', 'Product: cypress test');
+    cy.contains('div', 'Product: cypress test').should('exist');
 
+    // Obtener el ID del nuevo producto creado
     cy.contains('div', 'Product: cypress test').parent().within(() => {
       cy.get('.idContainer p').eq(1).invoke('text').then((text) => {
-        // Guarda el texto del ID en la variable, eliminando cualquier espacio en blanco
         productId = text.trim();
         cy.log(`Product ID: ${productId}`);
       });
     }).then(() => {
-      // Las acciones siguientes se ejecutarán solo después de obtener y guardar el productId
+      // Crear un inventario para el nuevo producto usando el ID obtenido
       cy.get('.inventoryHeaderContainer > div > .createButton').click();
-      cy.get('.listContainers').click();
-      cy.get('[name="product id"]').clear();
-      cy.get('[name="product id"]').type(productId);
-      cy.get('.listContainers').click();
-      cy.get('[name="quantity"]').clear();
-      cy.get('[name="quantity"]').type('50');
+      cy.get('[name="product id"]').clear().type(productId);
+      cy.get('[name="quantity"]').clear().type('50');
       cy.get('.buttonsBox > :nth-child(2)').click();
-      cy.get(':nth-child(7) > .inventoryContainer > .dataContainer > :nth-child(1)').should('have.text', 'Product: cypress test');
-      cy.get(':nth-child(7) > .inventoryContainer > .buttonsContainer > :nth-child(1) > .stockButton').click();
-      cy.get('.listContainers').click();
-      cy.get('input').clear();
-      cy.get('input').type('50');
+      cy.contains('.inventoryContainer .dataContainer', `Product: cypress test`).should('exist');
+
+      // Verificar el stock inicial
+      cy.contains('.inventoryContainer .dataContainer', `Product: cypress test`).within(() => {
+        cy.contains('Stock: 50').should('exist');
+      });
+
+
+      // Agregar stock al inventario
+      cy.contains('.inventoryContainer .dataContainer', `Product: cypress test`).parent().within(() => {
+        cy.get('.stockButton').eq(0).click();
+      });
+      cy.get('input').clear().type('50');
       cy.get('.buttonsBox > :nth-child(2)').click();
-      cy.get(':nth-child(7) > .inventoryContainer > .buttonsContainer > :nth-child(2) > .stockButton').click();
-      cy.get('.modifyModal').click();
-      cy.get('input').clear();
-      cy.get('input').type('50');
+      cy.wait(1000);
+
+      // Verificar el nuevo valor de stock
+      cy.contains('.inventoryContainer .dataContainer', `Product: cypress test`).within(() => {
+        cy.contains('Stock: 100').should('exist');
+      });
+
+      // Remover stock del inventario
+      cy.contains('.inventoryContainer .dataContainer', `Product: cypress test`).parent().within(() => {
+        cy.get('.stockButton').eq(1).click();
+      });
+      cy.get('input').clear().type('50');
       cy.get('.buttonsBox > :nth-child(2)').click();
-      cy.get(':nth-child(7) > .inventoryContainer > .buttonsContainer > :nth-child(3) > .deleteButton').click();
+
+      // Verificar el valor de stock después de la eliminación
+      cy.contains('.inventoryContainer .dataContainer', `Product: cypress test`).within(() => {
+        cy.contains('Stock: 50').should('exist');
+      });
+
+      // Eliminar el inventario
+      cy.contains('.inventoryContainer .dataContainer', `Product: cypress test`).parent().within(() => {
+        cy.get('.deleteButton').click();
+      });
       cy.get('.buttonsBox > .deleteButton').click();
-      cy.get(':nth-child(9) > .productContainer > .dataContainer > :nth-child(1)').should('have.text', 'Product: cypress test');
-      cy.get(':nth-child(9) > .productContainer > .dataContainer > div > .deleteButton').click();
+
+      // Verificar y eliminar el producto creado
+      cy.contains('.productContainer .dataContainer', 'Product: cypress test').should('exist').parent().within(() => {
+        cy.get('.deleteButton').click();
+      });
       cy.get('.buttonsBox > .deleteButton').click();
     });
-    /* ==== End Cypress Studio ==== */
   });
 });

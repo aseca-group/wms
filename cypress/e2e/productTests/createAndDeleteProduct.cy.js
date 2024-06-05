@@ -3,17 +3,18 @@ describe('template spec', () => {
     cy.visit('http://localhost:3000')
 
     /* ==== Generated with Cypress Studio ==== */
-    cy.get('.productHeaderContainer > div > .createButton').click();
-    cy.get('.createModal').click();
-    cy.get('[name="text input"]').clear();
-    cy.get('[name="text input"]').type('cypress test');
-    cy.get('.createModal').click();
-    cy.get('[name="number input"]').clear();
-    cy.get('[name="number input"]').type('1000');
-    cy.get('[name="create new product button"]').click();
-    cy.get(':nth-child(9) > .productContainer > .dataContainer > :nth-child(1)').should('have.text', 'Product: cypress test');
-    cy.get(':nth-child(9) > .productContainer > .dataContainer > div > .deleteButton').click();
-    cy.get('.buttonsBox > .deleteButton').click();
+    cy.contains('Create Product').click()
+    cy.get('input[name="text input"]').clear()
+    cy.get('input[name="text input"]').type('cypress test')
+    cy.get('input[name="number input"]').clear()
+    cy.get('input[name="number input"]').type('1000')
+    cy.get('button[name="create new product button"]').click()
+    cy.contains('div', 'Product: cypress test').within(() => {
+      // Encuentra y haz clic en el botón "Delete"
+      cy.contains('Delete').click();
+      cy.contains('Delete product').click();
+    });
+    cy.get('body').should('not.contain', 'Product: cypress test');
     /* ==== End Cypress Studio ==== */
   })
 })
