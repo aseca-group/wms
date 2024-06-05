@@ -2,7 +2,7 @@ import {useState} from "react";
 import "./style.css"
 import RemoveStockModal from "../inventoryModals/RemoveStockModal";
 
-export default function RemoveStock({productId}){
+export default function RemoveStock({productId, refetchInventory}){
     const [isRemoveStockModalOpen, setIsRemoveStockModalOpen] = useState(false);
 
     const setModalOpen = () => {
@@ -21,7 +21,13 @@ export default function RemoveStock({productId}){
                 Remove Stock
             </button>
             {
-                isRemoveStockModalOpen && <RemoveStockModal isModalOpen={isRemoveStockModalOpen} setModalClose={setModalClose} productId={productId}/>
+                isRemoveStockModalOpen &&
+                <RemoveStockModal
+                    isModalOpen={isRemoveStockModalOpen}
+                    setModalClose={setModalClose}
+                    productId={productId}
+                    refetchInventory={refetchInventory}
+                />
             }
         </div>
     )

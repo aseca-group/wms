@@ -1,0 +1,31 @@
+.container{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #D1D5DB;
+}
+
+.productHeaderContainer{
+    height: 15%;
+    width: 550px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #D1D5DB;
+    font-weight: 750;
+    font-size: 20px;
+}
+
+.productTextContainer{
+    padding-left: 15px;
+    width: 50%;
+}
+
+.productListContainer{
+    height: 90%;
+    display: flex;
+    justify-content: center;
+}

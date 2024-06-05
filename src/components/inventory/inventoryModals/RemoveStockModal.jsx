@@ -2,7 +2,7 @@ import {useOutsideClick} from "../../../commons/UseOutsideClick";
 import {useState} from "react";
 import {removeStock} from "../../../api/InventoryAPI";
 
-export default function RemoveStockModal({isModalOpen,setModalClose, productId}){
+export default function RemoveStockModal({isModalOpen,setModalClose, productId, refetchInventory}){
     const modalRef = useOutsideClick(isModalOpen, setModalClose);
     const [quantity, setQuantity] = useState(0);
 
@@ -10,6 +10,7 @@ export default function RemoveStockModal({isModalOpen,setModalClose, productId})
         try{
             await removeStock(productId, quantity)
             setModalClose();
+            await refetchInventory();
         } catch (error) {
             console.error("Error removing stock", error);
         }

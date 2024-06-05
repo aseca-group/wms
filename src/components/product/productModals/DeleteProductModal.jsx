@@ -1,17 +1,17 @@
-import './style.css'
-import {deleteInventory} from "../../../api/InventoryAPI";
 import {useOutsideClick} from "../../../commons/UseOutsideClick";
+import {deleteProduct} from "../../../api/ProductAPI";
+import './productModalsStyle.css';
 
-export default function DeleteInventoryModal({isModalOpen,setModalClose, productId, refetchInventory}) {
+export default function DeleteProductModal({productId, refetchProduct,isModalOpen, setModalClose}) {
     const modalRef = useOutsideClick(isModalOpen, setModalClose);
 
     const handleDelete = async () => {
         try {
-            await deleteInventory(productId);
+            await deleteProduct(productId);
             setModalClose();
-            await refetchInventory();
+            await refetchProduct();
         } catch (error) {
-            console.error("Error deleting inventory", error);
+            console.error("Error deleting product", error);
         }
     };
 
@@ -32,7 +32,7 @@ export default function DeleteInventoryModal({isModalOpen,setModalClose, product
                     className={'deleteButton'}
                     onClick={handleDelete}
                 >
-                    Delete
+                    Delete product
                 </button>
             </div>
         </div>

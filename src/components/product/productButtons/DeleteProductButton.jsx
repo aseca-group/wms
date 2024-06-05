@@ -1,8 +1,7 @@
 import {useState} from "react";
-import "./style.css"
-import DeleteInventoryModal from "../inventoryModals/DeleteInventoryModal";
+import DeleteProductModal from "../productModals/DeleteProductModal";
 
-export default function DeleteInventory({productId, refetchInventory}){
+export default function DeleteProduct({productId, refetchProduct}){
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
     const setModalOpen = () => {
@@ -21,13 +20,7 @@ export default function DeleteInventory({productId, refetchInventory}){
                 Delete
             </button>
             {
-                isDeleteModalOpen &&
-                <DeleteInventoryModal
-                    isModalOpen={isDeleteModalOpen}
-                    setModalClose={setModalClose}
-                    productId={productId}
-                    refetchInventory={refetchInventory}
-                />
+                isDeleteModalOpen && (<DeleteProductModal productId={productId} isModalOpen={isDeleteModalOpen} refetchProduct={refetchProduct} setModalClose={setModalClose}/>)
             }
         </div>
     )

@@ -1,8 +1,9 @@
-import {useOutsideClick} from "../../commons/UseOutsideClick";
+import {useOutsideClick} from "../../../commons/UseOutsideClick";
 import {useState} from "react";
-import {createProduct} from "../../api/ProductAPI";
+import {createProduct} from "../../../api/ProductAPI";
+import './productModalsStyle.css'
 
-export default function CreateProductModal({isModalOpen,setModalClose}){
+export default function CreateProductModal({isModalOpen,setModalClose, refetchProduct}){
     const modalRef = useOutsideClick(isModalOpen, setModalClose);
     const [price, setPrice] = useState(1);
     const [name, setName] = useState("product");
@@ -10,7 +11,9 @@ export default function CreateProductModal({isModalOpen,setModalClose}){
     const handleCreateProduct = async() => {
         try{
             await createProduct(price, name);
+            await refetchProduct();
             setModalClose();
+
         } catch (error) {
             console.error("Error creating product", error);
         }
@@ -19,16 +22,18 @@ export default function CreateProductModal({isModalOpen,setModalClose}){
     return (
         <div
             ref={modalRef}
-            className={'modifyModal'}
+            className={'createModal'}
         >
             <p>Enter the product name:</p>
             <input
+                name={'text input'}
                 type={'text'}
                 value={name}
                 onChange={(e) => setName(e.target.value)}
             />
             <p>Enter the product price:</p>
             <input
+                name={'number input'}
                 type={'number'}
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
@@ -41,6 +46,7 @@ export default function CreateProductModal({isModalOpen,setModalClose}){
                     Cancel
                 </button>
                 <button
+                    name={'create new product button'}
                     className={'stockButton'}
                     onClick={handleCreateProduct}
                 >

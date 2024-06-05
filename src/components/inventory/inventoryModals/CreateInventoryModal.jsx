@@ -1,8 +1,8 @@
-import {useOutsideClick} from "../../commons/UseOutsideClick";
+import {useOutsideClick} from "../../../commons/UseOutsideClick";
 import {useState} from "react";
-import {createInventory} from "../../api/InventoryAPI";
+import {createInventory} from "../../../api/InventoryAPI";
 
-export default function CreateInventoryModal({isModalOpen,setModalClose}) {
+export default function CreateInventoryModal({isModalOpen, setModalClose, refetchInventory}) {
     const modalRef = useOutsideClick(isModalOpen, setModalClose);
     const [productId, setProductId] = useState(0);
     const [quantity, setQuantity] = useState(0);
@@ -11,6 +11,7 @@ export default function CreateInventoryModal({isModalOpen,setModalClose}) {
         try {
             await createInventory(productId, quantity);
             setModalClose();
+            await refetchInventory();
         } catch (error) {
             console.error("Error creating inventory", error);
         }
@@ -23,12 +24,14 @@ export default function CreateInventoryModal({isModalOpen,setModalClose}) {
         >
             <p>Enter the product id:</p>
             <input
+                name={'product id'}
                 type={'number'}
                 value={productId}
                 onChange={(e) => setProductId(e.target.value)}
             />
             <p>Enter the quantity:</p>
             <input
+                name={'quantity'}
                 type={'number'}
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}

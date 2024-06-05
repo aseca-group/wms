@@ -1,15 +1,16 @@
-import {useEffect, useRef, useState} from "react";
+import {useState} from "react";
 import {useOutsideClick} from "../../../commons/UseOutsideClick";
 import {addInventoryStock} from "../../../api/InventoryAPI";
 
-export default function AddStockModal({isModalOpen,setModalClose, productId}){
+export default function AddStockModal({isModalOpen, setModalClose, productId, refetchInventory}){
     const modalRef = useOutsideClick(isModalOpen, setModalClose);
     const [quantity, setQuantity] = useState(0);
 
     const handleAddStock = async () => {
         try {
-            await addInventoryStock(productId,quantity)
+            await addInventoryStock(productId,quantity);
             setModalClose();
+            await refetchInventory();
         } catch (error) {
             console.error("Error adding stock", error);
         }
@@ -42,5 +43,4 @@ export default function AddStockModal({isModalOpen,setModalClose, productId}){
             </div>
         </div>
     )
-
 }
